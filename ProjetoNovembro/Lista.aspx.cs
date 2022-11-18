@@ -10,26 +10,64 @@ namespace ProjetoNovembro
 {
     public partial class Lista : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load()
         {
+            if (Usuario.Lista.Count == 0)
+            {
+                HttpContext.Current.Response.Redirect("/Default");
+            }
+
             gridResultado.DataSource = Usuario.Lista;
             gridResultado.DataBind();
+
         }
 
-        protected void Unnamed_Click(object sender, EventArgs e)
+        protected void gridResultado_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            ViewState["Nome"] = gridResultado.Rows[0].Cells[0].Text;
-
-            var usuario = gridResultado.Rows[0].Cells[0].Text;
-
-            if (usuario != null)
+            if (e.CommandName == "Editar")
             {
-                var teste = Usuario.Lista.ToArray()[0];
-                Usuario.Lista.Remove(teste);
-                teste.Nome = "teste Edicao 3";
-                Usuario.Lista.Add(teste);
+                var row = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                var id = row.Cells[0].Text;
 
+                if (id != null)
+                    HttpContext.Current.Response.Redirect("/default.aspx?id=" + id);
             }
+
+            if (e.CommandName == "Apagar")
+            {
+                var row = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                var usuarioExclusao = decimal.Parse(row.Cells[0].Text); var lista = Usuario.Lista;
+                var exclusao = (lista.Where(item => item.Id == usuarioExclusao).FirstOrDefault());
+
+                Usuario.Lista.Remove(exclusao);
+
+                Page_Load();
+            }
+        }
+
+        protected void voltar_Click(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.Redirect("/Default");
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var lista = Usuario.Lista;
+
+            var nomeBusca = txtBusca.Text;
+
+            if (nomeBusca != "")
+            {
+                var filtrarLista = (lista.Where(usuario => usuario.Nome == nomeBusca).ToList());
+
+                if (filtrarLista != null)
+                {
+                    gridResultado.DataSource = filtrarLista;
+                    gridResultado.DataBind();
+                }
+            }
+
+            txtBusca.Text = "";
         }
     }
 }

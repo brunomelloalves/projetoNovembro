@@ -72,3 +72,6 @@ C:\Users\bruno\source\repos\ProjetoNovembro\ProjetoNovembro\obj\Debug\ProjetoNov
 C:\Users\bruno\source\repos\ProjetoNovembro\ProjetoNovembro\obj\Debug\ProjetoNovembro.csproj.CopyComplete
 C:\Users\bruno\source\repos\ProjetoNovembro\ProjetoNovembro\obj\Debug\ProjetoNovembro.dll
 C:\Users\bruno\source\repos\ProjetoNovembro\ProjetoNovembro\obj\Debug\ProjetoNovembro.pdb
+C:\Users\bruno\source\repos\ProjetoNovembro\ProjetoNovembro\bin\Caelum.Stella.CSharp.dll
+C:\Users\bruno\source\repos\ProjetoNovembro\ProjetoNovembro\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\bruno\source\repos\ProjetoNovembro\ProjetoNovembro\bin\System.Diagnostics.DiagnosticSource.xml
